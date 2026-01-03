@@ -35,6 +35,28 @@ public class Main {
         return scanner.nextDouble();
     }
 
+    static void createAccount() {
+        if (accountCreated) {
+            System.out.println("Account already exists.");
+            return;
+        }
+
+        accountId = readInt("Enter Account ID: ");
+        scanner.nextLine(); // consume newline
+        System.out.print("Enter Account Holder Name: ");
+        accountHolder = scanner.nextLine(); // read string input
+
+        if (accountId <= 0 || accountHolder.isBlank()) {
+            System.out.println("Invalid account details.");
+            return;
+        }
+
+        balance = 0.0;
+        accountCreated = true;
+        System.out.println("Account created successfully.");
+    }
+
+
 
     public static void main(String[] args) {
         while (true) {
@@ -42,7 +64,7 @@ public class Main {
             int choice = readInt("Choose an option: ");
 
             switch (choice) {
-                case 1 -> System.out.println("Create Account functionality is not implemented yet.");
+                case 1 -> createAccount();
                 case 2 -> System.out.println("Deposit functionality is not implemented yet.");
                 case 3 -> System.out.println("Withdraw functionality is not implemented yet.");
                 case 4 -> System.out.println("Check Balance functionality is not implemented yet.");
