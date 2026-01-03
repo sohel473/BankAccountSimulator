@@ -109,7 +109,11 @@ public class Main {
         System.out.println("Balance: €" + balance);
     }
 
-    // Todo: Implement exit method
+    static void exit() {
+        System.out.println("Thank you for using the Bank Simulator.");
+        System.exit(0);
+    }
+
 
 
 
@@ -123,10 +127,7 @@ public class Main {
                 case 2 -> deposit();
                 case 3 -> withdraw();
                 case 4 -> checkBalance();
-                case 5 -> {
-                    System.out.println("Goodbye!");
-                    return;
-                }
+                case 5 -> exit();
                 default -> System.out.println("Invalid choice.");
             }
         }
