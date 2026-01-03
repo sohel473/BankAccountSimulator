@@ -57,6 +57,28 @@ public class Main {
     }
 
 
+    static void deposit() {
+        if (!accountCreated) {
+            System.out.println("Please create an account first.");
+            return;
+        }
+
+        double amount = readDouble("Enter deposit amount: ");
+
+        if (amount <= 0) {
+            System.out.println("Deposit amount must be positive.");
+            return;
+        }
+
+        balance += amount;
+        System.out.println("Deposit successful.");
+    }
+
+    // Todo: Implement withdraw method
+    // Todo: Implement checkBalance method
+    // Todo: Implement exit method
+
+
 
     public static void main(String[] args) {
         while (true) {
@@ -65,7 +87,7 @@ public class Main {
 
             switch (choice) {
                 case 1 -> createAccount();
-                case 2 -> System.out.println("Deposit functionality is not implemented yet.");
+                case 2 -> deposit();
                 case 3 -> System.out.println("Withdraw functionality is not implemented yet.");
                 case 4 -> System.out.println("Check Balance functionality is not implemented yet.");
                 case 5 -> {
