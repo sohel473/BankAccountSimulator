@@ -97,7 +97,18 @@ public class Main {
         System.out.println("Withdrawal successful.");
     }
 
-    // Todo: Implement checkBalance method
+    static void checkBalance() {
+        if (!accountCreated) {
+            System.out.println("Please create an account first.");
+            return;
+        }
+
+        System.out.println("\n--- ACCOUNT DETAILS ---");
+        System.out.println("Account ID: " + accountId);
+        System.out.println("Holder: " + accountHolder);
+        System.out.println("Balance: €" + balance);
+    }
+
     // Todo: Implement exit method
 
 
@@ -111,7 +122,7 @@ public class Main {
                 case 1 -> createAccount();
                 case 2 -> deposit();
                 case 3 -> withdraw();
-                case 4 -> System.out.println("Check Balance functionality is not implemented yet.");
+                case 4 -> checkBalance();
                 case 5 -> {
                     System.out.println("Goodbye!");
                     return;
