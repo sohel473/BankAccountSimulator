@@ -74,7 +74,29 @@ public class Main {
         System.out.println("Deposit successful.");
     }
 
-    // Todo: Implement withdraw method
+
+    static void withdraw() {
+        if (!accountCreated) {
+            System.out.println("Please create an account first.");
+            return;
+        }
+
+        double amount = readDouble("Enter withdrawal amount: ");
+
+        if (amount <= 0) {
+            System.out.println("Withdrawal amount must be positive.");
+            return;
+        }
+
+        if (amount > balance) {
+            System.out.println("Insufficient funds.");
+            return;
+        }
+
+        balance -= amount;
+        System.out.println("Withdrawal successful.");
+    }
+
     // Todo: Implement checkBalance method
     // Todo: Implement exit method
 
@@ -88,7 +110,7 @@ public class Main {
             switch (choice) {
                 case 1 -> createAccount();
                 case 2 -> deposit();
-                case 3 -> System.out.println("Withdraw functionality is not implemented yet.");
+                case 3 -> withdraw();
                 case 4 -> System.out.println("Check Balance functionality is not implemented yet.");
                 case 5 -> {
                     System.out.println("Goodbye!");
