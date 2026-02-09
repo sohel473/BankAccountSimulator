@@ -39,6 +39,7 @@ public class ConsoleUI {
         System.out.print("Initial balance: ");
         double bal = scanner.nextDouble();
         accountService.createAccount(acc, bal);
+        System.out.println("Account created successfully");
     }
 
     private void deposit() {
@@ -47,6 +48,8 @@ public class ConsoleUI {
         System.out.print("Amount: ");
         double amt = scanner.nextDouble();
         accountService.deposit(acc, amt);
+        System.out.println("Deposit successful");
+        System.out.println("Account number: " + acc + ", New balance: " + accountService.checkBalance(acc));
     }
 
     private void withdraw() {
@@ -55,6 +58,8 @@ public class ConsoleUI {
         System.out.print("Amount: ");
         double amt = scanner.nextDouble();
         accountService.withdraw(acc, amt);
+        System.out.println("Withdrawal successful");
+        System.out.println("Account number: " + acc + ", New balance: " + accountService.checkBalance(acc));
     }
 
     private void checkBalance() {
