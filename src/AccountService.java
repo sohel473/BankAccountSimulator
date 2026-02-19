@@ -41,5 +41,13 @@ public class AccountService {
         return tx.subList(Math.max(tx.size() - n, 0), tx.size());
     }
 
+    public double getTotalBankBalance() {
+        return accountRepository.findAll()
+                .stream()
+                .mapToDouble(Account::getBalance)
+                .sum();
+    }
+
+
 
 }
