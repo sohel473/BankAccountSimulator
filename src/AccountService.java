@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class AccountService {
 
     private final AccountRepository accountRepository;
@@ -32,5 +34,12 @@ public class AccountService {
     public double checkBalance(String accountNumber) {
         return getAccount(accountNumber).getBalance();
     }
+
+    public List<Transaction> getLastTransactions(String accountNumber, int n) {
+        Account account = getAccount(accountNumber);
+        List<Transaction> tx = account.getTransactions();
+        return tx.subList(Math.max(tx.size() - n, 0), tx.size());
+    }
+
 
 }
