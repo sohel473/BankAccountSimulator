@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,4 +15,10 @@ public class InMemoryAccountRepository implements AccountRepository {
     public Account findByAccountNumber(String accountNumber) {
         return accounts.get(accountNumber);
     }
+
+    @Override
+    public Collection<Account> findAll() {
+        return accounts.values();
+    }
+
 }
