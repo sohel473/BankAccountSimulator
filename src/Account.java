@@ -1,7 +1,12 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Account {
 
     private final String accountNumber;
     private double balance;
+    private final List<Transaction> transactions = new ArrayList<>();
 
     public Account(String accountNumber, double initialBalance) {
         this.accountNumber = accountNumber;
@@ -9,18 +14,28 @@ public class Account {
     }
 
     public void deposit(double amount) {
-        if (amount <= 0)
-            throw new IllegalArgumentException("Deposit must be positive");
+        validateAmount(amount);
         balance += amount;
+        transactions.add(new Transaction(accountNumber, amount, "DEPOSIT"));
     }
 
     public void withdraw(double amount) {
-        if (amount <= 0)
-            throw new IllegalArgumentException("Withdraw must be positive");
+        validateAmount(amount);
         if (amount > balance)
-            throw new IllegalStateException("Insufficient funds");
+            throw new InsufficientFundsException(balance, amount);
         balance -= amount;
+        transactions.add(new Transaction(accountNumber, -amount, "WITHDRAW"));
     }
+
+    public List<Transaction> getTransactions() {
+        return Collections.unmodifiableList(transactions);
+    }
+
+    private void validateAmount(double amount) {
+        if (amount <= 0)
+            throw new InvalidTransactionException("Amount must be positive");
+    }
+
 
     public double getBalance() {
         return balance;
