@@ -15,6 +15,7 @@ public class ConsoleUI {
             System.out.println("2. Deposit");
             System.out.println("3. Withdraw");
             System.out.println("4. Check Balance");
+            System.out.println("5. Show Last Transactions");
             System.out.println("0. Exit");
 
             int choice = scanner.nextInt();
@@ -25,10 +26,13 @@ public class ConsoleUI {
                     case 2 -> deposit();
                     case 3 -> withdraw();
                     case 4 -> checkBalance();
+                    case 5 -> showLastTransactions();
                     case 0 -> System.exit(0);
                 }
+            } catch (InsufficientFundsException | InvalidTransactionException e) {
+                System.out.println("Transaction failed: " + e.getMessage());
             } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
+                System.out.println("Unexpected error: " + e.getMessage());
             }
         }
     }
@@ -68,4 +72,15 @@ public class ConsoleUI {
         double balance = accountService.checkBalance(acc);
         System.out.println("Balance: " + balance);
     }
+
+    private void showLastTransactions() {
+        System.out.print("Account number: ");
+        String acc = scanner.next();
+        System.out.print("How many transactions? ");
+        int n = scanner.nextInt();
+
+        accountService.getLastTransactions(acc, n)
+                .forEach(System.out::println);
+    }
+
 }
